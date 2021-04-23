@@ -1,24 +1,51 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import Pages from "./components/Pages"
+import PokemonInfo from "./components/PokemonInfo"
+import { useState } from 'react';
+import Login from "./components/Login"
+import {UserContext} from "./components/UserContext"
+import User from "./components/User"
+import Signin from "./components/Signin"
 
 function App() {
+  const [userName, setUserName] = useState();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={[userName, setUserName]}>
+      <Router>
+        <div>
+          <header>
+            <h1>Pokedex</h1>
+            {userName?(
+              <h2>Bem vindo, <Link to="/User">{userName}</Link></h2>
+            ) :
+            (<Link to="/login">Login</Link>)
+           
+            }
+            <br/>
+          </header>
+          <Switch>
+            <Route path="/pokemon/:name">
+              <PokemonInfo/>
+            </Route>
+            <Route path="/login">
+              <Login/>
+            </Route>
+            <Route path="/signin">
+              <Signin/>
+            </Route>
+            <Route path="/User">
+              <User/>
+            </Route>
+            <Route path="/">
+              <Pages/>
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </UserContext.Provider>
+
   );
 }
 
