@@ -12,10 +12,9 @@ export default function User() {
 
     useEffect(() => {
         async function getPokemons(){
-            const response = await axios
-            .get("https://pokedex20201.herokuapp.com/users/"+user)
-            const fetchedPokemons = response.data.pokemons
-            setPokemons(Object.values(fetchedPokemons))
+            await axios.get("https://pokedex20201.herokuapp.com/users/"+user)
+            .then(response => setPokemons(Object.values(response.data.pokemons)))
+            .catch(error => alert(error))
     }
         getPokemons()
     },[user, pokemons])
@@ -39,11 +38,11 @@ export default function User() {
         <div className="App">
         <br/>
         <div id="goBack">
-            <Link to="/">Back</Link>
+            <Link to="/">home</Link>
         </div>
-        <h2>{user}</h2>
+        <h1>Seus Pokemons Favoritados:</h1>
             <styled.Ul>
-                {pokemons.map(pokemon => <><PokemonIcon key={pokemon.id} pokemon={pokemon}/> <button onClick={event => handleUnfav(pokemon)}>Unfav</button></>)}
+                {pokemons.map(pokemon => <><PokemonIcon key={pokemon.id} pokemon={pokemon} fav={true} handleUnfav={handleUnfav}/> <br/></>)}
             </styled.Ul>
         </div>
     );

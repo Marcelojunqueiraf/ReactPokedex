@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react"
 import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
 export default function Login(){
@@ -23,6 +24,7 @@ export default function Login(){
         })
         .catch(error => {
             alert("Usuário inexistente. Redirecionando para página de Cadastro")
+            console.log(error)
             setRedirect("/signin")
         })
         }
@@ -33,9 +35,12 @@ export default function Login(){
         <div className="App">
             <br/>
             <form onSubmit={handleSubmit}>
+                <h2>Digite seu nome de Usuário</h2>
                 <input type="text" value={name} onChange={event => setName(event.target.value)}/>
                 <button>login</button>
             </form>
+            <br/>
+            <Link to="/signin">Não tem conta? cadastre-se</Link>
         </div>
     )
 }

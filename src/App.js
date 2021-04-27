@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
 import Pages from "./components/Pages"
 import PokemonInfo from "./components/PokemonInfo"
 import { useState } from 'react';
@@ -21,7 +21,6 @@ function App() {
               <h2>Bem vindo, <Link to="/User">{userName}</Link></h2>
             ) :
             (<Link to="/login">Login</Link>)
-           
             }
             <br/>
           </header>
@@ -38,8 +37,11 @@ function App() {
             <Route path="/User">
               <User/>
             </Route>
-            <Route path="/">
+            <Route path="/home">
               <Pages/>
+            </Route>
+            <Route>
+              <Redirect to="/home"/>
             </Route>
           </Switch>
         </div>

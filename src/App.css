@@ -8,13 +8,6 @@ a{
   color:black;
 }
 
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 header {
   background-color: #282c34;
   align-items: center;
@@ -25,16 +18,4 @@ header {
   padding: 30px;
   color: white;
   font-size: calc(8px + 2vmin);
-}
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

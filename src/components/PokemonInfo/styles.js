@@ -6,6 +6,8 @@ export const Div = styled.div`
     justify-content: center;
     border-left:auto;
     border-right:auto;
+    padding-left:10px;
+    padding-right:10px;
     #imgContainer{
         display:flex;
         flex-direction:column;

@@ -9,11 +9,10 @@ function Pages() {
 
   useEffect(() => {
     async function getPokemons(){
-      const response = await axios
-
+      await axios
       .get("https://pokedex20201.herokuapp.com/pokemons", {params: {page: page}})
-      const fetchedPokemons = response.data.data
-      setPokemons(Object.values(fetchedPokemons))
+      .then(response => setPokemons(Object.values(response.data.data)))
+      .catch(error => alert(error))
   }
     getPokemons()
   },[page])
@@ -21,7 +20,7 @@ function Pages() {
   return (
     <div className="App">
       <br/>
-      <h2>Page</h2>
+      <h2>Page {page}</h2>
       <button onClick={()=> {setPage(page-1)}}>previous</button>
       <input type="number" value={page} onChange={(event) => setPage(event.target.value)}></input>
       <button onClick={()=> {setPage(page+1)}}>next</button>

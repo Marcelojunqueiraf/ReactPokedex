@@ -1,15 +1,17 @@
 import * as styled from "./styles"
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-export default function PokemonIcon({pokemon}){
-    
-    const types = pokemon.kind.split(';');
+export default function PokemonIcon({pokemon, fav, handleUnfav}){
     return (
-    <styled.Li key={pokemon.key}>
+    <styled.Li>
         <Link to={`/pokemon/${pokemon.name}`}>
             <div>
-            <h2>{pokemon.number}: {pokemon.name}</h2>
-            <img src={pokemon.image_url}/>
+            {fav? (
+                <h2>{pokemon.number}: {pokemon.name}<button onClick={event => handleUnfav(pokemon)}>Unfav</button></h2>
+            ): (
+                <h2>{pokemon.number}: {pokemon.name}</h2>    
+            )}
+            <img alt={"Pokemon representation: "+pokemon.name}src={pokemon.image_url}/>
             </div>
         </Link>
     </styled.Li>

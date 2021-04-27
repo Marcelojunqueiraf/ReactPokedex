@@ -29,8 +29,6 @@ export default function PokemonIcon(){
           event.preventDefault();
           favPokemon();
       }
-
-    const types = [1, 2];
     return (
         <>
         {pokemon ? (
@@ -40,18 +38,17 @@ export default function PokemonIcon(){
                 </div>
                 <div id="imgContainer">
                     <img src={pokemon.image_url}/>
-                    <button onClick={handleFav}>Fav</button>
+                    {user? (<button onClick={handleFav}>Fav</button>):(<></>)}
                 </div>
                 <div id="infoContainer">
                     <h2>{pokemon.number}: {pokemon.name}</h2>
                     <p>Type: {pokemon.kind}</p>
                     <p>Weight: {pokemon.weight/10}Kg  Height: {pokemon.height/10}m</p>
                 </div>
-                
             </styled.Div>
             )
             :
-            <p>Carrgando</p>
+            <p>Carregando</p>
         }
         </>
     )
